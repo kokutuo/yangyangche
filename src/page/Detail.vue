@@ -313,14 +313,12 @@ export default {
         where: { vehicle_id: vid }
       }).then(r => {
         this.report = r.data.data;
-        console.log("report", this.report);
       });
     },
 
     get_report_structure() {
       api("MODEL/FIND", { name: "report" }).then(r => {
         this.report_structure = r.data.data.structure;
-        console.log("report_structure: ", this.report_structure);
       });
     },
 

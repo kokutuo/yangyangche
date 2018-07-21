@@ -184,7 +184,6 @@ export default {
         e_mail: this.current.mail
       }).then(r => {
         this.code = atob(r.data.data.result);
-        console.log(this.code);
       });
     }
   }
