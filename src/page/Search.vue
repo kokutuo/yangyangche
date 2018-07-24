@@ -176,6 +176,8 @@ export default {
     prepare_search_param() {
       let query = this.parse_route_query();
       this.search_param = query;
+      console.log('this.search_param:',this.search_param);
+      
     },
 
     is_sort(property, direction) {
@@ -275,7 +277,7 @@ export default {
       let query = `where("title" contains "${p.keyword ||
         ""}" ${brand_query} ${design_query} ${price_min_query} ${price_max_query})`;
 
-      api("vehicle/read", {
+      api("1/vehicle/read", {
         query: query,
         sort_by: p.sort_by,
         limit: this.limit,
@@ -291,6 +293,7 @@ export default {
     "$route.query": {
       deep: true,
       handler(n) {
+        console.log("n: ", n);
         this.prepare_search_param();
         this.search();
       }

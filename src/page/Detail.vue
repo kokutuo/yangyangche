@@ -293,13 +293,13 @@ export default {
     submit_appo() {
       let row = this.appo;
 
-      api("appo/create", row).then(r => {
+      api("1/appo/create", row).then(r => {
         this.has_appointed();
       });
     },
 
     find(id) {
-      api("vehicle/find", { id }).then(r => {
+      api("1/vehicle/find", { id }).then(r => {
         this.detail = r.data.data;
       });
     },
@@ -309,16 +309,18 @@ export default {
     },
 
     find_report_by_vehicle(vid) {
-      api("report/first", {
+      api("1/report/first", {
         where: { vehicle_id: vid }
       }).then(r => {
         this.report = r.data.data;
+        console.log("report", this.report);
       });
     },
 
     get_report_structure() {
-      api("MODEL/FIND", { name: "report" }).then(r => {
+      api("1/MODEL/FIND", { key: "report" }).then(r => {
         this.report_structure = r.data.data.structure;
+        console.log("report_structure: ", this.report_structure);
       });
     },
 
@@ -337,7 +339,7 @@ export default {
 
       let query = `where("vehicle_id" = ${row.vehicle_id} ${user_query})`;
 
-      api("appo/read", query).then(r => {
+      api("1/appo/read", query).then(r => {
         this.appointed_appo = r.data.data[0];
       });
     }
