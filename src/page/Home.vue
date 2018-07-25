@@ -173,7 +173,7 @@ export default {
 
   methods: {
     find_design(name) {
-      api("1/design/search", { or: { name: name } }).then(r => {
+      api("design/search", { or: { name: name } }).then(r => {
         this.design[name] = r.data.data[0];
       });
     },
@@ -229,7 +229,7 @@ export default {
 
       condition = Object.assign({}, condition, limit);
 
-      api("1/vehicle/read", condition).then(r => {
+      api("vehicle/read", condition).then(r => {
         this["main_list"] = r.data.data;
       });
     },

@@ -1,7 +1,8 @@
 window.api = api;
+import axios from 'axios';
 
 const APP_KEY = 'b766bc75ea6969373616aa2ff698e3572792d7ed6e7d4ae2dd3c95cc0f3f7578';
-const BASE_API = 'http://mock.biaoyansu.com/api/';
+const BASE_API = 'http://mock.biaoyansu.com/api/1/';
 
 function sign(app_key, timestamp) {
     return btoa(app_key + timestamp);
@@ -13,9 +14,9 @@ function api(url, params) {
 
     let option = {
         headers: {
-            'biao-mock-app-key': APP_KEY,
-            'biao-mock-timestamp': timestamp,
-            'biao-mock-signature': signature
+            'BIAO-MOCK-APP-KEY': APP_KEY,
+            'BIAO-MOCK-TIMESTAMP': timestamp,
+            'BIAO-MOCK-SIGNATURE': signature
         },
     };
 

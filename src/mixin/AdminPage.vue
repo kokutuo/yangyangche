@@ -57,11 +57,9 @@ export default {
      *
      * 具体创建还是更新决定于是否有id
      */
-    cou() {
-      console.log('this.current:', this.current);
-      
+    cou() {      
       let action = this.current.id ? "update" : "create";
-      api(`1/${this.model}/${action}`, this.current).then(r => {
+      api(`${this.model}/${action}`, this.current).then(r => {
         if (r.data.success) {
           this.read();
           this.current = {};
@@ -78,7 +76,7 @@ export default {
       if (!confirm("确认删除？")) {
         return;
       }
-      api(`1/${this.model}/delete`, { id: id }).then(r => {
+      api(`${this.model}/delete`, { id: id }).then(r => {
         this.read();
       });
     },
@@ -92,7 +90,7 @@ export default {
         return;
       }
 
-      api(`1/${this.model}/read`, {
+      api(`${this.model}/read`, {
         page: page,
         limit: this.limit,
         with: this.with
@@ -116,7 +114,7 @@ export default {
         param.or[prop] = this.keyword;
       });
 
-      api(`1/${this.model}/search`, param).then(r => {
+      api(`${this.model}/search`, param).then(r => {
         this.list = r.data.data;
         this.keyword = "";
       });
