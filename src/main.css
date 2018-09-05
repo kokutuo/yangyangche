@@ -132,6 +132,10 @@ table {
   }
 }
 
+.wrap {
+  min-height: calc(100vh - 50px);
+}
+
 .row {
   font-size: 0;
   display: block;

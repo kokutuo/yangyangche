@@ -1,7 +1,7 @@
 <template>
   <div>
     <Nav/>
-    <div class="bg-pic">
+    <div>
       <div class="container parent">
         <form @submit.prevent="submit" class="main-form">
           <h1>登录</h1>
@@ -31,10 +31,14 @@
           <div class="input-control">
             <p>没有账号？<a class="signup" href="#">注册</a></p>
           </div>
+          <div class="well">
+            <span>管理员账号：admin</span>
+            <span>密码：yoyoyo</span>
+          </div>
         </form>
       </div>
     </div>
-    <Footer/>
+    <!-- <Footer/> -->
   </div>
 </template>
 
@@ -107,27 +111,20 @@ export default {
 </script>
 
 <style scoped>
-.bg-pic {
-  min-height: 500px;
-  background-image: url(../assets/login/login.png);
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: 0 60px;
-}
-
 .parent {
   position: relative;
 }
 
 .main-form {
-  width: 300px;
+  width: 800px;
   position: absolute;
   display: inline-block;
   padding: 10px 20px;
   background: #f5f5f5;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  right: 30px;
+  left: 30%;
+  right: 30%;
   top: 100px;
 }
 

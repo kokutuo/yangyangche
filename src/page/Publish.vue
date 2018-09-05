@@ -1,66 +1,68 @@
 <template>
-  <div>
-    <Nav/>
-    <div class="header">
-      <div class="container por">
-        <form @submit.prevent="submit" class="main-form" autocomplete="off">
-          <div v-if="step == 1">
-            <h1>要卖什么车？</h1>
-            <div class="input-control">
-              <div class="col-lg-6">
-                <label>品牌</label>
-                <Dropdown 
-                  :list="brand_list"
-                  :onSelect="set_brand_id"/>
-              </div>
-              <div class="col-lg-6">
-                <label>型号</label>
-                <Dropdown
-                  :list="model_list"
-                  :onSelect="set_model_id"/>
-              </div>
-            </div>
-          </div>
-
-          <div v-if="step == 2">
-            <h1>怎么联系你？</h1>
-            <div class="input-control">
-              <label>请输入您的手机号</label>
-              <input 
-                v-validator="'required|cellphone'"
-                v-model="current.phone"
-                :key="'phone'"
-                error-el="#phone-error"
-                type="text">
-                <div class="error-list">
-                  <div id="phone-error"></div>
+  <div class="publish">
+    <div class="wrap">
+      <Nav/>
+      <div class="header">
+        <div class="container por">
+          <form @submit.prevent="submit" class="main-form" autocomplete="off">
+            <div v-if="step == 1">
+              <h1>要卖什么车？</h1>
+              <div class="input-control">
+                <div class="col-lg-6">
+                  <label>品牌</label>
+                  <Dropdown 
+                    :list="brand_list"
+                    :onSelect="set_brand_id"/>
                 </div>
+                <div class="col-lg-6">
+                  <label>型号</label>
+                  <Dropdown
+                    :list="model_list"
+                    :onSelect="set_model_id"/>
+                </div>
+              </div>
             </div>
-          </div>
-          
-          <div v-if="step == 3">
-            <h1>发布成功</h1>
-            <p>审核中···</p>
-            <p>
-              <router-link to="/">返回首页</router-link>
-            </p>
-          </div>
 
-          <div class="row">
-            <div class="col-lg-6">
-              <button type="button" @click="dec()" v-if="step > 1 && step < 3">上一步</button>
+            <div v-if="step == 2">
+              <h1>怎么联系你？</h1>
+              <div class="input-control">
+                <label>请输入您的手机号</label>
+                <input 
+                  v-validator="'required|cellphone'"
+                  v-model="current.phone"
+                  :key="'phone'"
+                  error-el="#phone-error"
+                  type="text">
+                  <div class="error-list">
+                    <div id="phone-error"></div>
+                  </div>
+              </div>
             </div>
-            <div class="col-lg-6">
-              <button type="button" @click="inc()" v-if="step < 2">下一步</button>
-              <button 
-                type="submit"
-                class="btn-primary"
-                :disabled="!current.brand_id || !current.model_id || !current.phone"
-                v-if="step == 2">发布二手车
-              </button>
+            
+            <div v-if="step == 3">
+              <h1>发布成功</h1>
+              <p>审核中···</p>
+              <p>
+                <router-link to="/">返回首页</router-link>
+              </p>
             </div>
-          </div>
-        </form>
+
+            <div class="row">
+              <div class="col-lg-6">
+                <button type="button" @click="dec()" v-if="step > 1 && step < 3">上一步</button>
+              </div>
+              <div class="col-lg-6">
+                <button type="button" @click="inc()" v-if="step < 2">下一步</button>
+                <button 
+                  type="submit"
+                  class="btn-primary"
+                  :disabled="!current.brand_id || !current.model_id || !current.phone"
+                  v-if="step == 2">发布二手车
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
     <Footer/>
@@ -172,3 +174,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  .publish .main-form {
+    position: absolute;
+    width: 1000px;
+  }
+</style>

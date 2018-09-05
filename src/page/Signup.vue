@@ -138,7 +138,7 @@ export default {
         delete this.current.phone;
       } else {
         delete this.current.mail;
-      }
+      }  
 
       // 如果没有用户名，就默认用已填的邮箱或手机号作为用户名
       !this.current.username &&
