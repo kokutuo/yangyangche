@@ -2,8 +2,8 @@
   <div>
     <Nav/>
     <div>
-      <div class="container parent">
-        <form @submit.prevent="submit" class="main-form">
+      <div class="container">
+        <form @submit.prevent="submit" class="login-form">
           <h1>登录</h1>
           <div v-if="login_failed" class="error-list">
             <div class="error">用户名或密码有误</div>
@@ -74,7 +74,7 @@ export default {
       }
 
       if (unique === "admin" && password === "yoyoyo") {
-        this.on_login_succeed({id: 1, username: "admin", is_admin: true });
+        this.on_login_succeed({ id: 1, username: "admin", is_admin: true });
         return;
       }
 
@@ -102,7 +102,7 @@ export default {
       session.login(row);
       alert("登录成功");
       if (session.is_admin()) {
-        this.$router.push('/admin/user')
+        this.$router.push("/admin/user");
       }
       this.$router.push("/");
     }
@@ -111,25 +111,18 @@ export default {
 </script>
 
 <style scoped>
-.parent {
-  position: relative;
-}
-
-.main-form {
-  width: 800px;
-  position: absolute;
-  display: inline-block;
+.login-form {
+  width: 500px;
+  text-align: center;
   padding: 10px 20px;
+  margin: 50px auto 0;
   background: #f5f5f5;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
-  left: 30%;
-  right: 30%;
-  top: 100px;
 }
 
-.main-form input,
-.main-form button {
+.login-form input,
+.login-form button {
   width: 100%;
   margin-bottom: 13px;
 }

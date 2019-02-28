@@ -15,6 +15,7 @@
     </div>
     <div class="row vehicle-intro">
         <div class="container">
+            <!-- 图片展示，可以手动选择大图 -->
             <div class="col-lg-6">
                 <div class="slider">
                     <img :src="detail.preview ? detail.preview[selected_preview].url : 'https://i.loli.net/2018/07/06/5b3f160071a17.jpg'" alt="一辆车">
@@ -25,6 +26,7 @@
                     </div>
                 </div>
             </div>
+            <!-- 车辆信息 -->
             <div class="col-lg-6 order-panel">
                 <div class="title">
                     {{detail.title}}
@@ -45,12 +47,12 @@
                     </div>
                     </div>
                     <div class="row">
-                    <div class="col-lg-3 prop">服务项:</div>
-                    <div class="col-lg-9">
-                        <span class="server">整车质保</span>
-                        <span class="server">14天可退</span>
-                        <span class="server">249项车况检测</span>
-                    </div>
+                      <div class="col-lg-3 prop">服务项:</div>
+                      <div class="col-lg-9">
+                          <span class="server">整车质保</span>
+                          <span class="server">14天可退</span>
+                          <span class="server">249项车况检测</span>
+                      </div>
                     </div>
                 </div>
                 <div class="short-props">
@@ -97,7 +99,7 @@
                 </div>
                 <div v-else>
                   <button class="btn btn-primary" disabled>已预约</button>
-                  <p>预约时间：{{appointed_appo.appointed_at}}</p>
+                  <p>预约时间：{{appointed_appo.appointed_at | only_day}}</p>
                 </div>
             </div>
         </div>
@@ -329,15 +331,18 @@ export default {
 
     has_appointed() {
       let row = this.appo;
-      let user_query = '';
+      let user_query = "";
 
       if (!row.user_id) {
-        user_query = `and "user_id" = ${row.user_id}`
+        user_query = `and "user_id" = ${row.user_id}`;
       }
 
       let query = `where("vehicle_id" = ${row.vehicle_id} ${user_query})`;
 
       api("appo/read", query).then(r => {
+        if (!r.data.data) {
+          return;
+        }
         this.appointed_appo = r.data.data[0];
       });
     }
